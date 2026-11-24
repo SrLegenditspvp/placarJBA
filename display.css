@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+:root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; background: #07101d; color: #fff; }
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: radial-gradient(ellipse at 50% 0%, #1a2a43 0%, #0c1729 43%, #060d18 100%); }
+.arena-screen { min-height: 100vh; padding: clamp(15px, 2.5vw, 36px) clamp(14px, 3.3vw, 50px) 18px; display: flex; flex-direction: column; }
+.arena-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+.arena-brand { display: flex; align-items: center; gap: 12px; }
+.jba-mark { width: 48px; height: 48px; display: grid; place-items: center; color: #081222; border-radius: 12px; background: white; font: 900 20px "Barlow Condensed", sans-serif; }
+.arena-brand div { display: flex; flex-direction: column; gap: 4px; }
+.arena-brand strong { color: #fff; font-size: clamp(12px, 1.5vw, 18px); letter-spacing: .7px; }
+.arena-brand small { color: #8394aa; font-size: 9px; font-weight: 800; letter-spacing: 1.8px; }
+.arena-period { padding: 10px 20px; color: #f1f5fb; border: 1px solid rgba(255,255,255,.15); border-radius: 100px; background: rgba(255,255,255,.06); font-size: 11px; font-weight: 900; letter-spacing: 1.4px; }
+.arena-status { justify-self: end; display: flex; align-items: center; gap: 9px; color: #96a8bf; font-size: 9px; font-weight: 900; letter-spacing: 1.4px; }
+.arena-status i { width: 8px; height: 8px; border-radius: 50%; background: #32c889; box-shadow: 0 0 0 5px rgba(50,200,137,.13); }
+.arena-score { flex: 1; margin: clamp(18px, 4vh, 42px) 0 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .62fr) minmax(0, 1fr); align-items: center; gap: clamp(12px, 2.3vw, 34px); }
+.arena-team { --accent: #8b94a3; min-width: 0; padding: clamp(17px, 2.4vw, 34px) clamp(12px, 2vw, 28px); text-align: center; border: 1px solid rgba(255,255,255,.11); border-top: 5px solid var(--accent); border-radius: 18px; background: linear-gradient(155deg, rgba(255,255,255,.075), rgba(255,255,255,.02)); box-shadow: 0 20px 55px rgba(0,0,0,.17); }
+.arena-team[data-color="preto"] { --accent: #9aa3b1; }
+.arena-team[data-color="amarelo"] { --accent: #f2c94c; }
+.arena-team[data-color="verde"] { --accent: #27bd79; }
+.arena-team[data-color="azul"] { --accent: #418df3; }
+.team-label { color: #7d90a9; font-size: 10px; font-weight: 900; letter-spacing: 2.3px; }
+.team-name { min-height: 55px; margin: 14px 0 0; display: flex; justify-content: center; align-items: center; gap: 12px; }
+.team-name i { width: 13px; height: 13px; flex: 0 0 13px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; background: #171b22; }
+.team-name i[data-color="preto"] { background: #11151c; border-color: #9aa3b1; }
+.team-name i[data-color="amarelo"] { background: #f2c94c; border-color: #ffe58a; }
+.team-name i[data-color="verde"] { background: #27bd79; border-color: #8ceabf; }
+.team-name i[data-color="azul"] { background: #418df3; border-color: #a2caff; }
+.team-name h1 { margin: 0; color: #fff; font: 800 clamp(21px, 3vw, 42px)/1 "Barlow Condensed", sans-serif; letter-spacing: 2px; }
+.big-score { margin: 5px 0 16px; color: #fff; font: 900 clamp(105px, 16vw, 225px)/.92 "Barlow Condensed", Impact, sans-serif; font-variant-numeric: tabular-nums; text-shadow: 0 7px 32px rgba(0,0,0,.28); }
+.team-indicators { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.1); border-bottom: 1px solid rgba(255,255,255,.1); }
+.team-indicators div { padding: 12px 4px; display: flex; flex-direction: column; gap: 5px; }
+.team-indicators div + div { border-left: 1px solid rgba(255,255,255,.1); }
+.team-indicators span { color: #8294ac; font-size: 9px; font-weight: 900; letter-spacing: 1.5px; }
+.team-indicators strong { color: #f6f8fc; font: 800 clamp(25px, 3vw, 42px) "Barlow Condensed", sans-serif; }
+.team-indicators strong.penalty { color: #ff8880; }
+.possession { min-height: 30px; margin-top: 14px; padding: 8px 7px; color: #8394aa; border: 1px solid transparent; border-radius: 6px; font-size: 8px; font-weight: 900; letter-spacing: 1.3px; }
+.possession.active { color: #ffe18b; border-color: rgba(242,201,76,.24); background: rgba(242,201,76,.12); }
+.arena-center { min-width: 0; text-align: center; }
+.center-caption, .shot-label { color: #8ea1ba; font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+.arena-clock { margin: 10px 0 11px; color: white; font: 800 clamp(66px, 8vw, 112px)/1 "Barlow Condensed", monospace; font-variant-numeric: tabular-nums; text-shadow: 0 5px 22px rgba(0,0,0,.25); }
+.arena-clock.zero { color: #ff8787; }
+.center-divider { width: 55%; height: 1px; margin: 0 auto 12px; background: rgba(255,255,255,.12); position: relative; }
+.center-divider span { position: relative; top: -9px; padding: 0 9px; color: #71849d; background: #101d31; font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: 2px; }
+.arena-shot { margin: 4px 0 0; color: #ffd16b; font: 900 clamp(55px, 7vw, 86px)/1 "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+.arena-shot.zero { color: #ff7777; }
+.timeout-banner { margin-top: 17px; padding: 10px; display: flex; flex-direction: column; gap: 3px; border: 1px solid rgba(242,201,76,.28); border-radius: 8px; background: rgba(242,201,76,.09); }
+.timeout-banner span { color: #f3d98f; font-size: 8px; font-weight: 900; letter-spacing: 1.4px; }
+.timeout-banner strong { color: white; font: 800 28px "Barlow Condensed", sans-serif; }
+.arena-period-points { padding: 16px 12px; border-top: 1px solid rgba(255,255,255,.11); border-bottom: 1px solid rgba(255,255,255,.11); }
+.period-points-label { display: block; margin-bottom: 10px; color: #7588a1; font-size: 8px; font-weight: 900; letter-spacing: 1.8px; text-align: center; }
+.period-score-table { display: flex; justify-content: center; gap: clamp(21px, 5vw, 70px); }
+.period-score-col { min-width: 32px; display: grid; gap: 5px; text-align: center; }
+.period-score-col span { color: #8194ad; font-size: 9px; font-weight: 900; }
+.period-score-col strong { color: #ecf2f9; font: 700 18px "Barlow Condensed", sans-serif; }
+.period-score-col.total { padding-left: clamp(16px, 3vw, 38px); border-left: 1px solid rgba(255,255,255,.15); }
+.period-score-col.total span, .period-score-col.total strong { color: white; }
+.arena-footer { padding-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.arena-footer > div:first-child { display: flex; gap: 18px; color: #778ba5; font-size: 9px; font-weight: 700; }
+.display-controls { display: flex; align-items: center; gap: 15px; }
+.display-controls span { color: #647992; font-size: 8px; font-weight: 900; letter-spacing: 1px; }
+.display-controls button, .display-controls a { padding: 8px 10px; color: #b8c7d9; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; background: rgba(255,255,255,.05); font-size: 8px; font-weight: 900; text-decoration: none; }
+.display-controls a { color: #83b1fb; }
+[hidden] { display: none !important; }
+@media (max-width: 850px) {
+  .arena-score { grid-template-columns: 1fr 1fr; }
+  .arena-center { grid-column: 1 / -1; grid-row: 1; padding-bottom: 15px; }
+  .arena-clock { font-size: 74px; }
+  .arena-shot { font-size: 55px; }
+  .arena-team { padding: 15px 10px; }
+  .big-score { font-size: clamp(88px, 17vw, 145px); }
+  .team-name h1 { font-size: 27px; }
+}
+@media (max-width: 540px) {
+  .arena-screen { padding: 12px 10px; }
+  .arena-header { grid-template-columns: 1fr auto; gap: 10px; }
+  .arena-period { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+  .arena-status { font-size: 7px; }
+  .jba-mark { width: 38px; height: 38px; font-size: 16px; }
+  .arena-brand strong { font-size: 11px; }
+  .arena-brand small { font-size: 7px; }
+  .arena-score { margin: 15px 0; gap: 7px; }
+  .arena-team { padding: 12px 6px; border-radius: 10px; }
+  .team-label { font-size: 7px; }
+  .team-name { min-height: 34px; margin-top: 8px; gap: 6px; }
+  .team-name i { width: 8px; height: 8px; flex-basis: 8px; }
+  .team-name h1 { font-size: clamp(17px, 5vw, 24px); letter-spacing: 1px; }
+  .big-score { margin: 4px 0 9px; font-size: clamp(72px, 19vw, 110px); }
+  .team-indicators span { font-size: 6px; letter-spacing: .6px; }
+  .team-indicators strong { font-size: 24px; }
+  .possession { margin-top: 7px; font-size: 6px; }
+  .center-caption, .shot-label { font-size: 8px; }
+  .arena-clock { font-size: 62px; }
+  .arena-shot { font-size: 45px; }
+  .period-score-table { gap: 13px; }
+  .period-score-col { min-width: 23px; }
+  .period-score-col strong { font-size: 14px; }
+  .arena-footer { align-items: flex-start; flex-direction: column; }
+  .display-controls { width: 100%; justify-content: space-between; gap: 6px; }
+  .display-controls span { display: none; }
+}

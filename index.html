@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1424">
+  <title>JBA | Placar de Basquete</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="JBA Placar">
+      <span class="brand-mark">JBA</span>
+      <span class="brand-copy"><strong>JBA <em>PLACAR</em></strong><small>MESA DE CONTROLE</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="save-status" id="saveIndicator"><i></i> SALVAMENTO AUTOMÁTICO</span>
+      <button class="button button-ghost" id="openDisplayBtn" type="button">↗ Abrir telão</button>
+      <button class="button button-ghost" id="fullscreenBtn" type="button">⛶ Tela cheia</button>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section class="match-info panel">
+      <div class="match-info-heading">
+        <span class="eyebrow">DADOS DA PARTIDA</span>
+        <strong id="matchTitle">JBA · Campeonato local</strong>
+      </div>
+      <div class="match-fields">
+        <label>Competição<input id="competitionInput" maxlength="60" value="JBA"></label>
+        <label>Categoria<input id="categoryInput" maxlength="40" placeholder="Ex.: Sub-18"></label>
+        <label>Ginásio<input id="venueInput" maxlength="60" placeholder="Local da partida"></label>
+        <label>Data<input id="dateInput" type="date"></label>
+      </div>
+      <button class="button button-small button-light" id="saveMetaBtn" type="button">Salvar dados</button>
+    </section>
+
+    <section class="scoreboard panel" aria-label="Placar da partida">
+      <div class="scoreboard-topline">
+        <span class="eyebrow">PLACAR AO VIVO</span>
+        <span class="period-pill" id="periodLabel">1º QUARTO</span>
+        <span class="game-status" id="matchStatus">AGUARDANDO INÍCIO</span>
+      </div>
+
+      <div class="score-layout">
+        <article class="team-card" id="homeTeamCard" data-color="preto">
+          <div class="team-role">EQUIPE A</div>
+          <div class="team-select-wrap">
+            <span class="team-color-dot" id="homeColorDot"></span>
+            <select class="team-select" id="homeTeamSelect" aria-label="Selecionar cor da equipe A">
+              <option value="preto">PRETO</option><option value="amarelo">AMARELO</option><option value="verde">VERDE</option><option value="azul">AZUL</option>
+            </select>
+          </div>
+          <div class="team-score" id="homeScore">0</div>
+          <div class="score-actions">
+            <button class="score-button" data-score-side="home" data-points="1" type="button">+1</button>
+            <button class="score-button" data-score-side="home" data-points="2" type="button">+2</button>
+            <button class="score-button" data-score-side="home" data-points="3" type="button">+3</button>
+          </div>
+          <div class="team-stats">
+            <div><span>FALTAS DE EQUIPE</span><strong id="homeTeamFouls">0</strong></div>
+            <div><span>TEMPOS RESTANTES</span><strong id="homeTimeouts">2</strong></div>
+          </div>
+          <div class="team-actions">
+            <button class="button button-foul" data-team-foul="home" type="button">+ Falta</button>
+            <button class="button button-timeout" data-timeout="home" type="button">Pedir tempo</button>
+          </div>
+        </article>
+
+        <section class="clock-column" aria-label="Controles de tempo">
+          <div class="clock-label">TEMPO DE JOGO</div>
+          <div class="game-clock" id="gameClock">10:00</div>
+          <div class="clock-main-actions">
+            <button class="button button-primary" id="toggleGameClock" type="button">▶ Iniciar</button>
+            <button class="button button-ghost" id="resetGameClock" type="button">↺ Reiniciar</button>
+          </div>
+          <div class="clock-adjust">
+            <button class="button button-tiny button-ghost" data-adjust-clock="-10" type="button">−10s</button>
+            <button class="button button-tiny button-ghost" data-adjust-clock="-1" type="button">−1s</button>
+            <button class="button button-tiny button-ghost" data-adjust-clock="1" type="button">+1s</button>
+            <button class="button button-tiny button-ghost" data-adjust-clock="10" type="button">+10s</button>
+          </div>
+
+          <div class="shot-clock-panel">
+            <div class="shot-clock-heading"><span>RELÓGIO DE ARREMESSO</span><small>24 / 14 SEGUNDOS</small></div>
+            <strong id="shotClock">24</strong>
+            <div class="shot-clock-actions">
+              <button class="button button-shot" id="shot24Btn" type="button">24s</button>
+              <button class="button button-shot" id="shot14Btn" type="button">14s</button>
+              <button class="button button-shot" id="shotToggleBtn" type="button">▶</button>
+              <button class="button button-shot" id="shotStopBtn" type="button">Ⅱ</button>
+            </div>
+          </div>
+
+          <div class="possession-panel">
+            <span>SETA DE POSSE ALTERNADA</span>
+            <div class="possession-buttons">
+              <button id="possessionHome" class="possession-button" type="button">◀ EQUIPE A</button>
+              <button id="possessionAway" class="possession-button" type="button">EQUIPE B ▶</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="team-card" id="awayTeamCard" data-color="amarelo">
+          <div class="team-role">EQUIPE B</div>
+          <div class="team-select-wrap">
+            <span class="team-color-dot" id="awayColorDot"></span>
+            <select class="team-select" id="awayTeamSelect" aria-label="Selecionar cor da equipe B">
+              <option value="preto">PRETO</option><option value="amarelo" selected>AMARELO</option><option value="verde">VERDE</option><option value="azul">AZUL</option>
+            </select>
+          </div>
+          <div class="team-score" id="awayScore">0</div>
+          <div class="score-actions">
+            <button class="score-button" data-score-side="away" data-points="1" type="button">+1</button>
+            <button class="score-button" data-score-side="away" data-points="2" type="button">+2</button>
+            <button class="score-button" data-score-side="away" data-points="3" type="button">+3</button>
+          </div>
+          <div class="team-stats">
+            <div><span>FALTAS DE EQUIPE</span><strong id="awayTeamFouls">0</strong></div>
+            <div><span>TEMPOS RESTANTES</span><strong id="awayTimeouts">2</strong></div>
+          </div>
+          <div class="team-actions">
+            <button class="button button-foul" data-team-foul="away" type="button">+ Falta</button>
+            <button class="button button-timeout" data-timeout="away" type="button">Pedir tempo</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="period-points" id="periodPoints" aria-label="Pontuação por período"></div>
+      <div class="scoreboard-footer">
+        <div class="period-controls">
+          <button class="button button-ghost button-small" id="previousPeriodBtn" type="button">‹ Período anterior</button>
+          <button class="button button-primary button-small" id="nextPeriodBtn" type="button">Próximo período ›</button>
+        </div>
+        <div class="timeout-display" id="timeoutDisplay" hidden>
+          <span>TEMPO TÉCNICO</span><strong id="timeoutClock">01:00</strong>
+          <button class="button button-small button-ghost" id="endTimeoutBtn" type="button">Encerrar</button>
+        </div>
+        <div class="undo-controls">
+          <span id="saveMessage">Dados salvos neste navegador</span>
+          <button class="button button-ghost button-small" id="undoBtn" type="button">↶ Desfazer ação</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="below-grid">
+      <article class="panel events-panel">
+        <div class="panel-heading"><div><span class="eyebrow">REGISTRO DA PARTIDA</span><h2>Últimos acontecimentos</h2></div><button class="button button-small button-light" id="clearEventsBtn" type="button">Limpar histórico</button></div>
+        <ol class="event-list" id="eventList"><li class="empty-events">Os registros da partida aparecerão aqui.</li></ol>
+      </article>
+
+      <aside class="panel settings-panel">
+        <div class="panel-heading"><div><span class="eyebrow">AJUSTES</span><h2>Configurações</h2></div></div>
+        <form id="settingsForm" class="settings-form">
+          <label>Quarto (min)<input name="quarterMinutes" type="number" min="1" max="20" required></label>
+          <label>Prorrogação (min)<input name="overtimeMinutes" type="number" min="1" max="10" required></label>
+          <label>Relógio de arremesso (s)<input name="shotClockSeconds" type="number" min="1" max="60" required></label>
+          <label>Tempo técnico (s)<input name="timeoutSeconds" type="number" min="1" max="180" required></label>
+          <label>Limite de faltas da equipe<input name="teamFoulLimit" type="number" min="1" max="10" required></label>
+          <label>Tempos no 1º tempo<input name="firstHalfTimeouts" type="number" min="0" max="10" required></label>
+          <label>Tempos no 2º tempo<input name="secondHalfTimeouts" type="number" min="0" max="10" required></label>
+          <label>Tempos por prorrogação<input name="overtimeTimeouts" type="number" min="0" max="5" required></label>
+          <button class="button button-primary button-wide" type="submit">Salvar configurações</button>
+          <button class="button button-light button-wide" id="restoreDefaultsBtn" type="button">Restaurar padrão</button>
+        </form>
+        <div class="data-tools">
+          <strong>Dados da partida</strong>
+          <button class="button button-light button-wide" id="exportJsonBtn" type="button">↓ Exportar backup</button>
+          <label class="button button-light button-wide file-button">↑ Importar backup<input type="file" id="importJsonInput" accept="application/json,.json" hidden></label>
+          <button class="button button-danger button-wide" id="newMatchBtn" type="button">Nova partida / zerar placar</button>
+          <p>O placar é salvo automaticamente neste navegador. Exporte o backup para guardar uma cópia da partida.</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="page-footer"><span>JBA PLACAR · HTML · CSS · JAVASCRIPT PURO</span><span>Controle de mesa — confirme os registros com a arbitragem.</span></footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07101d">
+  <title>JBA | Telão</title>
+  <link rel="stylesheet" href="display.css">
+</head>
+<body>
+  <main class="arena-screen">
+    <header class="arena-header">
+      <div class="arena-brand"><span class="jba-mark">JBA</span><div><strong id="competition">CAMPEONATO JBA</strong><small id="category">PLACAR AO VIVO</small></div></div>
+      <div class="arena-period" id="period">1º QUARTO</div>
+      <div class="arena-status"><i></i><span id="status">AGUARDANDO INÍCIO</span></div>
+    </header>
+
+    <section class="arena-score">
+      <article class="arena-team" id="homeTeam" data-color="preto">
+        <div class="team-label">EQUIPE A</div>
+        <div class="team-name"><i id="homeDot"></i><h1 id="homeName">PRETO</h1></div>
+        <div class="big-score" id="homeScore">0</div>
+        <div class="team-indicators"><div><span>FALTAS</span><strong id="homeFouls">0</strong></div><div><span>TEMPOS</span><strong id="homeTimeouts">2</strong></div></div>
+        <div class="possession" id="homePossession">PRÓXIMA POSSE</div>
+      </article>
+
+      <div class="arena-center">
+        <div class="center-caption">TEMPO DE JOGO</div>
+        <div class="arena-clock" id="gameClock">10:00</div>
+        <div class="center-divider"><span>JBA</span></div>
+        <div class="shot-label">RELÓGIO DE ARREMESSO</div>
+        <div class="arena-shot" id="shotClock">24</div>
+        <div class="timeout-banner" id="timeoutBanner" hidden><span>TEMPO TÉCNICO</span><strong id="timeoutClock">01:00</strong></div>
+      </div>
+
+      <article class="arena-team" id="awayTeam" data-color="amarelo">
+        <div class="team-label">EQUIPE B</div>
+        <div class="team-name"><i id="awayDot"></i><h1 id="awayName">AMARELO</h1></div>
+        <div class="big-score" id="awayScore">0</div>
+        <div class="team-indicators"><div><span>FALTAS</span><strong id="awayFouls">0</strong></div><div><span>TEMPOS</span><strong id="awayTimeouts">2</strong></div></div>
+        <div class="possession" id="awayPossession">PRÓXIMA POSSE</div>
+      </article>
+    </section>
+
+    <section class="arena-period-points" id="periodPoints" aria-label="Pontuação por período"></section>
+    <footer class="arena-footer">
+      <div><span id="venue"></span><span id="matchDate"></span></div>
+      <div class="display-controls"><span id="syncStatus">SINCRONIZADO COM A MESA</span><button id="fullscreenBtn" type="button">⛶ TELA CHEIA</button><a href="index.html">VOLTAR À MESA</a></div>
+    </footer>
+  </main>
+  <script src="display.js"></script>
+</body>
+</html>
